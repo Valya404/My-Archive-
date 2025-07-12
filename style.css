@@ -77,3 +77,27 @@ nav a:hover {
   font-size: 14px;
   color: #666;
 }
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .banner h1 {
+    font-size: 28px;
+  }
+  .banner button {
+    width: 100%;
+    font-size: 18px;
+  }
+  .stories {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+  .card {
+    padding: 15px;
+  }
+  .about, .footer {
+    padding: 20px;
+  }
+}
