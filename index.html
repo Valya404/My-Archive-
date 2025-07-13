@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -5,42 +6,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Archive 😮‍💨 🤤</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <header>My Archive 😮‍💨 🤤</header>
   <nav>
     <a href="#stories">Архив</a>
-    <a href="#about">О сайте</a>
+    <a href="#form">Добавить</a>
     <a href="#contacts">Контакты</a>
   </nav>
   <section class="banner">
     <h1>Погрузись в мрак желаний…</h1>
     <button onclick="document.getElementById('stories').scrollIntoView({behavior:'smooth'})">Читать истории</button>
   </section>
-  <section class="stories" id="stories">
-    <div class="card">
-      <h3>История №1: Ночная смена</h3>
-      <p>Он пришёл поздно. Я ждал. Шаги за спиной — и дыхание рядом с ухом…</p>
-    </div>
-    <div class="card">
-      <h3>История №2: Наказание</h3>
-      <p>В этом клубе правила жёсткие. Но я знал, что за болью — удовольствие…</p>
-    </div>
-    <div class="card">
-      <h3>История №3: Архив</h3>
-      <p>Каждый файл — как признание. Каждый рассказ — кусочек моей души.</p>
-    </div>
+  <section class="form-section" id="form">
+    <h2>Добавить историю</h2>
+    <form id="storyForm">
+      <input type="text" id="title" placeholder="Заголовок" required /><br />
+      <textarea id="text" placeholder="Текст истории" required></textarea><br />
+      <input type="text" id="image" placeholder="URL изображения (необязательно)" /><br />
+      <button type="submit">Сохранить</button>
+    </form>
   </section>
-  <section class="about" id="about">
-    <h2>О проекте</h2>
-    <p>Этот архив — место для тёмных, запретных, пикантных историй, где слова проникают под кожу… и глубже.</p>
-  </section>
+  <section class="stories" id="stories"></section>
   <section class="about" id="contacts">
     <h2>Контакты</h2>
-    <p>По всем вопросам: <a href="mailto:your@email.com" style="color:#f55">your@email.com</a></p>
+    <p>Пиши сюда, если хочешь добавить греха: <a href="mailto:your@email.com" style="color:#f55">your@email.com</a></p>
   </section>
-  <footer class="footer">
-    © My Archive 😮‍💨 🤤 — Все права, все грехи защищены
-  </footer>
+  <footer class="footer">© My Archive 😮‍💨 🤤 — Все права, все грехи защищены</footer>
+  <script src="script.js"></script>
 </body>
 </html>
