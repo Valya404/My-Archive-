@@ -1,27 +1,54 @@
+(() => {
+  const stories = Array.isArray(window.ARCHIVE_STORIES) ? window.ARCHIVE_STORIES : [];
+  const storyList = document.getElementById("storyList");
+  const feedCount = document.getElementById("feedCount");
+  const searchInput = document.getElementById("searchInput");
 
-const client = supabase.createClient("https://myntrgzxirmbhxjuvxok.supabase.co", 
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15bnRyZ3p4aXJtYmh4anV2eG9rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIzOTAxMTIsImV4cCI6MjA2Nzk2NjExMn0.WTZUhDpQa1CAN_Bs_ph_02kaktyRn1dqC51xeAnLC-A");
+  let query = "";
 
-document.getElementById('storyForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const title = document.getElementById('title').value;
-  const text = document.getElementById('text').value;
-  const image = document.getElementById('image').value;
-  const { error } = await client.from('stories').insert([{ title, text, image_url: image }]);
-  if (error) { alert('Ошибка: ' + error.message); } else { alert('Добавлено!'); location.reload(); }
-});
+  function filteredStories() {
+    if (!query) return stories;
+    return stories.filter((story) => {
+      const hay = `${story.title} ${story.excerpt}`.toLowerCase();
+      return hay.includes(query);
+    });
+  }
 
-async function loadStories() {
-  const { data, error } = await client.from('stories').select('*').order('created_at', { ascending: false });
-  const container = document.getElementById('stories');
-  data.forEach(story => {
-    const card = document.createElement('div');
-    card.innerHTML = `
-      ${story.image_url ? `<img src="${story.image_url}" style="width:100%;border-radius:8px;" />` : ''}
-      <h3>${story.title}</h3>
-      <p>${story.text}</p>
-    `;
-    container.appendChild(card);
+  function render() {
+    const list = filteredStories();
+    feedCount.textContent = `${list.length} из ${stories.length}`;
+
+    storyList.innerHTML = list
+      .map(
+        (story, index) => `
+          <li class="story" style="animation-delay:${Math.min(index, 8) * 40}ms">
+            <p class="story__meta"><time>${escapeHtml(story.date)}</time></p>
+            <h3 class="story__title">
+              <a href="${escapeAttr(story.url)}" target="_blank" rel="noopener">${escapeHtml(story.title)}</a>
+            </h3>
+            <p class="story__excerpt">${escapeHtml(story.excerpt)}</p>
+          </li>
+        `
+      )
+      .join("");
+  }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;");
+  }
+
+  function escapeAttr(value) {
+    return escapeHtml(value).replaceAll("'", "&#39;");
+  }
+
+  searchInput.addEventListener("input", () => {
+    query = searchInput.value.trim().toLowerCase();
+    render();
   });
-}
-loadStories();
+
+  render();
+})();
