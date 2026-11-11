@@ -1,39 +1,83 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Archive 😮‍💨 🤤</title>
+  <title>My Archive — библиотека историй</title>
+  <meta name="description" content="Архив ЛГБТ-рассказов без лишнего: только истории, метки и чтение." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-  <header>My Archive 😮‍💨 🤤</header>
-  <nav>
-    <a href="#stories">Архив</a>
-    <a href="#form">Добавить</a>
-    <a href="#contacts">Контакты</a>
-  </nav>
-  <section class="banner">
-    <h1>Погрузись в мрак желаний…</h1>
-    <button onclick="document.getElementById('stories').scrollIntoView({behavior:'smooth'})">Читать истории</button>
-  </section>
-  <section class="form-section" id="form">
-    <h2>Добавить историю</h2>
-    <form id="storyForm">
-      <input type="text" id="title" placeholder="Заголовок" required /><br />
-      <textarea id="text" placeholder="Текст истории" required></textarea><br />
-      <input type="text" id="image" placeholder="URL изображения (необязательно)" /><br />
-      <button type="submit">Сохранить</button>
-    </form>
-  </section>
-  <section class="stories" id="stories"></section>
-  <section class="about" id="contacts">
-    <h2>Контакты</h2>
-    <p>Пиши сюда, если хочешь добавить греха: <a href="mailto:your@email.com" style="color:#f55">your@email.com</a></p>
-  </section>
-  <footer class="footer">© My Archive 😮‍💨 🤤 — Все права, все грехи защищены</footer>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#top">My Archive</a>
+    <nav class="topnav" aria-label="Основное">
+      <a href="#archive">Все истории</a>
+      <a href="#archive" data-action="new">Новые</a>
+      <button type="button" class="linkish" id="randomBtn">Случайная</button>
+      <a href="#tags">Метки</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero__veil"></div>
+      <div class="hero__copy">
+        <p class="hero__brand">My Archive</p>
+        <h1>Только истории.<br />Никаких знакомств и объявлений.</h1>
+        <p class="hero__lead">
+          Чистая библиотека: заголовок, метка, текст. Структура как у большой гей-библиотеки —
+          без верхней строки мусора.
+        </p>
+        <div class="hero__cta">
+          <a class="btn" href="#archive">Открыть архив</a>
+          <button type="button" class="btn btn--ghost" id="randomHeroBtn">Случайный рассказ</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="library" id="archive">
+      <aside class="sidebar" id="tags">
+        <h2>Навигация</h2>
+        <ul class="side-links">
+          <li><button type="button" class="tag is-active" data-filter="all">Все рассказы</button></li>
+          <li><button type="button" class="tag" data-filter="__new">Новые</button></li>
+          <li><button type="button" class="tag" id="sideRandom">Случайный рассказ</button></li>
+        </ul>
+
+        <h2>Метки</h2>
+        <ul class="tag-list" id="tagList"></ul>
+
+        <p class="sidebar-note">
+          Прототип на реальных заголовках с
+          <a href="https://wolf574.wordpress.com/" target="_blank" rel="noopener">wolf574.wordpress.com</a>.
+          Структура — по мотивам библиотеки рассказов, но только контент.
+        </p>
+      </aside>
+
+      <div class="feed">
+        <div class="feed__toolbar">
+          <label class="search">
+            <span class="sr-only">Поиск</span>
+            <input id="searchInput" type="search" placeholder="Найти по названию или метке…" autocomplete="off" />
+          </label>
+          <p class="feed__count" id="feedCount"></p>
+        </div>
+
+        <ol class="story-list" id="storyList"></ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>My Archive</strong> — черновик структуры: истории и ничего лишнего.</p>
+  </footer>
+
+  <script src="stories-data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
