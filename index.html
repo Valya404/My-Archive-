@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Archive — библиотека историй</title>
-  <meta name="description" content="Архив ЛГБТ-рассказов без лишнего: только истории, метки и чтение." />
+  <title>My Archive</title>
+  <meta name="description" content="Твоё тайное место между строк. ЛГБТ-рассказы без купюр: жаркие сцены, запретные желания, грязные игры и голая правда." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -16,10 +16,7 @@
   <header class="topbar">
     <a class="brand" href="#top">My Archive</a>
     <nav class="topnav" aria-label="Основное">
-      <a href="#archive">Все истории</a>
-      <a href="#archive" data-action="new">Новые</a>
-      <button type="button" class="linkish" id="randomBtn">Случайная</button>
-      <a href="#tags">Метки</a>
+      <a href="#archive">Архив</a>
     </nav>
   </header>
 
@@ -28,42 +25,23 @@
       <div class="hero__veil"></div>
       <div class="hero__copy">
         <p class="hero__brand">My Archive</p>
-        <h1>Только истории.<br />Никаких знакомств и объявлений.</h1>
+        <h1>Твоё тайное место между строк</h1>
         <p class="hero__lead">
-          Чистая библиотека: заголовок, метка, текст. Структура как у большой гей-библиотеки —
-          без верхней строки мусора.
+          Здесь — ЛГБТ-рассказы без купюр: жаркие сцены, запретные желания, грязные игры и голая правда.
+          Каждый текст — как ночной клуб: ярко, тесно, пульсирует. Только для тех, кто чувствует больше, чем принято.
         </p>
         <div class="hero__cta">
-          <a class="btn" href="#archive">Открыть архив</a>
-          <button type="button" class="btn btn--ghost" id="randomHeroBtn">Случайный рассказ</button>
+          <a class="btn" href="#archive">Читать истории</a>
         </div>
       </div>
     </section>
 
     <section class="library" id="archive">
-      <aside class="sidebar" id="tags">
-        <h2>Навигация</h2>
-        <ul class="side-links">
-          <li><button type="button" class="tag is-active" data-filter="all">Все рассказы</button></li>
-          <li><button type="button" class="tag" data-filter="__new">Новые</button></li>
-          <li><button type="button" class="tag" id="sideRandom">Случайный рассказ</button></li>
-        </ul>
-
-        <h2>Метки</h2>
-        <ul class="tag-list" id="tagList"></ul>
-
-        <p class="sidebar-note">
-          Прототип на реальных заголовках с
-          <a href="https://wolf574.wordpress.com/" target="_blank" rel="noopener">wolf574.wordpress.com</a>.
-          Структура — по мотивам библиотеки рассказов, но только контент.
-        </p>
-      </aside>
-
       <div class="feed">
         <div class="feed__toolbar">
           <label class="search">
             <span class="sr-only">Поиск</span>
-            <input id="searchInput" type="search" placeholder="Найти по названию или метке…" autocomplete="off" />
+            <input id="searchInput" type="search" placeholder="Найти историю…" autocomplete="off" />
           </label>
           <p class="feed__count" id="feedCount"></p>
         </div>
@@ -74,7 +52,7 @@
   </main>
 
   <footer class="footer">
-    <p><strong>My Archive</strong> — черновик структуры: истории и ничего лишнего.</p>
+    <p><strong>My Archive</strong> — твоё тайное место между строк.</p>
   </footer>
 
   <script src="stories-data.js"></script>
